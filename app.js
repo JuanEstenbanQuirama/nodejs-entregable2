@@ -3,11 +3,12 @@ const express = require("express");
 // hacer una instancia de express
 const db = require("./utils/database");
 const ToDos = require("./models/toDos.model");
+const cors = require('cors');
 require('dotenv').config();
 
 ToDos; //ejecutar el modelo (tabla)
 
-const PORT = process.env.PORT ?? 10000;
+const PORT = process.env.PORT ?? 8000;
 
 db.authenticate()
   .then(() => {
@@ -18,7 +19,9 @@ db.authenticate()
 db.sync().then(() => console.log("base sincronizada"));
 
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 
 // CREATE
