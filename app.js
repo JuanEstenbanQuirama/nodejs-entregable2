@@ -3,7 +3,11 @@ const express = require("express");
 // hacer una instancia de express
 const db = require("./utils/database");
 const ToDos = require("./models/toDos.model");
+require('dotenv').config();
+
 ToDos; //ejecutar el modelo (tabla)
+
+const PORT = process.env.PORT ?? 8000;
 
 db.authenticate()
   .then(() => {
@@ -88,6 +92,6 @@ app.get("/", (req, res) => {
   } catch (error) {}
 });
 
-app.listen(8000, () => {
-  console.log("servidor corriendo");
+app.listen(PORT, () => {
+  console.log(`server listen in port ${PORT}`);
 });
